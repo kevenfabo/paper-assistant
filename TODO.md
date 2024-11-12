@@ -14,6 +14,7 @@ INGESTION PIPELINE:
     - define ingestion pipeline optimizations
 
 GENERATION PIPELINE:
+    - llm: https://ollama.com/
     - define generation steps 
     - define an agentic approach to generation
 
@@ -22,3 +23,6 @@ UI:
 
 PROMPT ENGINEERING:
     - optimize prompts with dspy
+
+EVALUATION:
+    - define retrieval and generation evaluation metrics: https://github.com/explodinggradients/ragas/tree/main
