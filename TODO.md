@@ -19,3 +19,6 @@ GENERATION PIPELINE:
 
 UI:
     - build a UI to interact with the system: https://docs.chainlit.io/get-started/overview
+
+PROMPT ENGINEERING:
+    - optimize prompts with dspy
