@@ -19,8 +19,9 @@ PAPER_IDS = [
     "1706.03762", # attention is all you need
     "2411.04952", # M3DOCRAG
     "2106.09685", # Lora
-    "2407.01449" # Colpali
-    
+    "2407.01449", # Colpali
+    "2003.05622",
+    "2203.15556" # Chinchilla paper 
 ]
 
 PAPER_SEARCH_KEYS = [
