@@ -32,7 +32,7 @@ EMBEDDINGS_INFO = {
         "dimension": 384
     },
     "bge-large": {
-        "model_id": "bge-large-en",
+        "model_id": "BAAI/bge-large-en-v1.5",
         "dimension": 1024
     }
 }
@@ -92,7 +92,7 @@ def index_documents(document_nodes: object, embedding_name: str) -> VectorStoreI
 def main(embedding_name: str, chunking_strategy: str) -> None:
     
     # get the script arguments
-    embedding_name = "bge-small"
+    embedding_name = "bge-large"
     
     # load papers from document store
     documents = load_documents("data/papers") # TODO: set the document as en variable
