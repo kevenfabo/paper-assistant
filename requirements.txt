@@ -3,3 +3,4 @@ llama-index-vector-stores-faiss
 faiss-cpu
 llama-index
 llama-index-embeddings-huggingface
+llama-index-llms-huggingface

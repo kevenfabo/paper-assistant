@@ -12,7 +12,8 @@ from llama_index.core.ingestion import IngestionPipeline
 from llama_index.vector_stores.faiss import FaissVectorStore
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.core.node_parser import TokenTextSplitter
-
+from llama_index.llms.huggingface import HuggingFaceLLM
+from llama_index.core import Settings
 
 logging.basicConfig(
     level=logging.INFO,
@@ -37,6 +38,10 @@ EMBEDDINGS_INFO = {
     }
 }
 
+Settings.llm = HuggingFaceLLM(
+    model_name="HuggingFaceH4/zephyr-7b-alpha"
+)
+
 def load_documents(folder_path: str) -> SimpleDirectoryReader:
     
     logging.info(f"Start loading documents from `{folder_path}` folder")
@@ -49,7 +54,7 @@ def load_documents(folder_path: str) -> SimpleDirectoryReader:
     
     return documents 
 
-def create_document_nodes(documents):
+def create_document_nodes(documents, chunk_strategy: str = "token_split"):
     # TODO: add typing and doctring
 
     # text splitting strategy 
@@ -84,15 +89,12 @@ def index_documents(document_nodes: object, embedding_name: str) -> VectorStoreI
 
     # save index to disk 
     index.storage_context.persist(
-        persist_dir="data/vectors"
+        persist_dir="data/vectors" # TODO: migrate to an env variable
     )
     
     return index
 
 def main(embedding_name: str, chunking_strategy: str) -> None:
-    
-    # get the script arguments
-    embedding_name = "bge-large"
     
     # load papers from document store
     documents = load_documents("data/papers") # TODO: set the document as en variable
@@ -132,7 +134,13 @@ if __name__=="__main__":
     args = parser.parse_args()
     
     # init the ingestion proces 
-    main(
+    index = main(
         embedding_name=args.embedding_name,
         chunking_strategy=args.chunking_strategy
     )
+    
+    # test the created index
+    query_engine = index.as_query_engine()
+    test_response = query_engine.query("what is your name ?")
+    
+    test_response
