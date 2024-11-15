@@ -1,10 +1,17 @@
 
 
 Hyperparams:
-  - llm model 
-  - embedding model
-  - text splitting strat  
-  - chunk size [256, 512, 1024]
-  - chunk overlap 
-  - top_k candidates
-  - reranker 
+  - llm model:
+    - name:
+    - temperature
+  - embedding:
+    - name
+    - top_k
+  - text_splitting:
+    - name
+    - chunk_size:
+    - chunk_overlap:
+  - reranker:
+    - model_name
+    - top_n
+  - indexing

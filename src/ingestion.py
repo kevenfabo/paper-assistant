@@ -12,6 +12,8 @@ from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.core.node_parser import TokenTextSplitter
 from llama_index.core import Settings
 from llama_index.llms.ollama import Ollama
+from llama_index.embeddings.ollama import OllamaEmbedding
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -26,17 +28,36 @@ logger = logging.getLogger(__name__)
 
 # embeddings definition
 EMBEDDINGS_INFO = {
-    "bge-small": {
-        "model_id": "BAAI/bge-small-en-v1.5",
-        "dimension": 384
+    "mxbai-embed-large": {
+        "model_id": "mxbai-embed-large",
+        "dimension": 1024
     },
     "bge-large": {
-        "model_id": "BAAI/bge-large-en-v1.5",
+        "model_id": "bge-large",
         "dimension": 1024
     }
 }
 
-Settings.llm = Ollama(model="llama3.1:latest", request_timeout=120.0)
+LLM_INFO = {
+    "llama3.1": {
+        "model_name": "llama3.1",
+    },
+    "llama3": {
+        "model_name": "llama3",
+    },
+    "gemma2": {
+        "model_name": "gemma2",
+    },
+    "zephyr": {
+        "model_name": "zephyr",
+    },
+    "phi3.5": {
+        "model_name": "phi3.5",
+    },
+    "mistral7b": {
+        "model_name": "mistral",
+    },
+}
 
 def load_documents(folder_path: str) -> SimpleDirectoryReader:
     
@@ -79,7 +100,7 @@ def index_documents(document_nodes: object, embedding_name: str) -> VectorStoreI
     index = VectorStoreIndex(
         document_nodes,
         storage_context=storage_context,
-        embed_model=HuggingFaceEmbedding(model_name=EMBEDDINGS_INFO[embedding_name]["model_id"]) 
+        embed_model=OllamaEmbedding(model_name=EMBEDDINGS_INFO[embedding_name]["model_id"]) 
     )
 
     # save index to disk 
@@ -135,6 +156,9 @@ if __name__=="__main__":
     # get the args
     args = parser.parse_args()
     
+    # setup default llm model
+    Settings.llm = Ollama(model=f"{args.model_name}:latest", request_timeout=120.0)
+    
     # init the ingestion proces 
     index = main(
         embedding_name=args.embedding_name,
@@ -147,3 +171,4 @@ if __name__=="__main__":
     
     # test that the query engine is working
     assert test_response.response is not None
+    print(f"Test RASG response is:\n{test_response.response}")
