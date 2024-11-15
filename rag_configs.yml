@@ -1,0 +1,10 @@
+
+
+Hyperparams:
+  - llm model 
+  - embedding model
+  - text splitting strat  
+  - chunk size [256, 512, 1024]
+  - chunk overlap 
+  - top_k candidates
+  - reranker 

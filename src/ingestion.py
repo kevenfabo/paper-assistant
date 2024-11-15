@@ -6,14 +6,12 @@ from llama_index.core import (
     SimpleDirectoryReader,
     VectorStoreIndex,
     StorageContext,
-    load_index_from_storage
 )
-from llama_index.core.ingestion import IngestionPipeline
 from llama_index.vector_stores.faiss import FaissVectorStore
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.core.node_parser import TokenTextSplitter
-from llama_index.llms.huggingface import HuggingFaceLLM
 from llama_index.core import Settings
+from llama_index.llms.ollama import Ollama
 
 logging.basicConfig(
     level=logging.INFO,
@@ -38,9 +36,7 @@ EMBEDDINGS_INFO = {
     }
 }
 
-Settings.llm = HuggingFaceLLM(
-    model_name="HuggingFaceH4/zephyr-7b-alpha"
-)
+Settings.llm = Ollama(model="llama3.1:latest", request_timeout=120.0)
 
 def load_documents(folder_path: str) -> SimpleDirectoryReader:
     
@@ -78,7 +74,6 @@ def index_documents(document_nodes: object, embedding_name: str) -> VectorStoreI
     )
     storage_context = StorageContext.from_defaults(
         vector_store=vector_store,
-        
     )
     # create indexes 
     index = VectorStoreIndex(
@@ -130,6 +125,13 @@ if __name__=="__main__":
         type=str
     )
     
+    # embedding name 
+    parser.add_argument(
+        "--model_name",
+        help="LLM to be use to test the ingestion pipeline",
+        type=str
+    )
+    
     # get the args
     args = parser.parse_args()
     
@@ -141,6 +143,7 @@ if __name__=="__main__":
     
     # test the created index
     query_engine = index.as_query_engine()
-    test_response = query_engine.query("what is your name ?")
+    test_response = query_engine.query("what is Attention Is All You Need?")
     
-    test_response
+    # test that the query engine is working
+    assert test_response.response is not None
