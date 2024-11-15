@@ -1,17 +1,71 @@
+defaults: &defaults
+  llm:
+    name: "gpt-3.5-turbo"
+    temperature: 0.7
+  embedding:
+    name: "sentence-transformers/all-mpnet-base-v2"
+    top_k: 5
+  text_splitting:
+    name: "recursive_character"
+    chunk_size: 1000
+    chunk_overlap: 200
+  reranker:
+    model_name: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    top_n: 3
+  indexing:
+    type: "faiss"
 
+strategies:
+  default:
+    <<: *defaults
 
-Hyperparams:
-  - llm model:
-    - name:
-    - temperature
-  - embedding:
-    - name
-    - top_k
-  - text_splitting:
-    - name
-    - chunk_size:
-    - chunk_overlap:
-  - reranker:
-    - model_name
-    - top_n
-  - indexing
+  precise_search:
+    <<: *defaults
+    llm:
+      name: "gpt-4"
+      temperature: 0.2
+    embedding:
+      top_k: 8
+    text_splitting:
+      chunk_size: 500
+      chunk_overlap: 100
+    reranker:
+      top_n: 5
+
+  creative_response:
+    <<: *defaults
+    llm:
+      name: "gpt-4"
+      temperature: 0.9
+    embedding:
+      top_k: 3
+    text_splitting:
+      chunk_size: 1500
+      chunk_overlap: 300
+
+  balanced:
+    <<: *defaults
+    llm:
+      name: "gpt-3.5-turbo"
+      temperature: 0.5
+    embedding:
+      top_k: 5
+    text_splitting:
+      chunk_size: 800
+      chunk_overlap: 150
+    reranker:
+      top_n: 4
+
+  economy:
+    <<: *defaults
+    llm:
+      name: "gpt-3.5-turbo"
+      temperature: 0.7
+    embedding:
+      name: "sentence-transformers/all-MiniLM-L6-v2"
+      top_k: 3
+    text_splitting:
+      chunk_size: 1200
+      chunk_overlap: 200
+    reranker:
+      top_n: 2
