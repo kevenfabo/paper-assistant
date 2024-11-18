@@ -26,3 +26,7 @@ PROMPT ENGINEERING:
 
 EVALUATION:
     - define retrieval and generation evaluation metrics: https://github.com/explodinggradients/ragas/tree/main
+
+REFACTORING:
+    - create a RAG module that will be used to index and generate answers
+    - create config files for the iterations 
