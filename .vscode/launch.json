@@ -42,6 +42,27 @@
             ], 
             "console": "integratedTerminal",
             "justMyCode": true
+        },
+        {
+            "name": "generation",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/generation.py",
+            "cwd": "${workspaceFolder}",
+            "python": "${command:python.interpreterPath}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            // "args": [
+            //     "--chunking_strategy",
+            //     "10",
+            //     "--embedding_name",
+            //     "mxbai-embed-large",
+            //     "--model_name",
+            //     "llama3.1"
+            // ], 
+            "console": "integratedTerminal",
+            "justMyCode": true
         }
     ]
 }

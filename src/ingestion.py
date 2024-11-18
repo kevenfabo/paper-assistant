@@ -102,7 +102,7 @@ def index_documents(document_nodes: object, embedding_name: str) -> VectorStoreI
 
     # save index to disk 
     index.storage_context.persist(
-        persist_dir="data/vectors" # TODO: migrate to an env variable
+        persist_dir="data/vectors/partition/all" # TODO: migrate to an env variable
     )
     
     return index

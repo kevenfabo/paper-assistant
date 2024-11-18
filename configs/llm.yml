@@ -1,0 +1,15 @@
+# Description: This file contains the configuration for the LLM model.
+platform:
+  ollama:
+    mistral7b:
+      model_name: "mistral7b"
+    zephyr:
+      model_name: "zephyr"
+    llama3.1:
+      model_name: "llama3.1"
+    llama3:
+      model_name: "llama3"
+    gemma2:
+      model_name: "gemma2"
+    phi3.5:
+      model_name: "phi3.5"
