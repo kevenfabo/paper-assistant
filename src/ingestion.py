@@ -1,4 +1,3 @@
-
 import faiss
 import logging
 import argparse
@@ -7,13 +6,11 @@ from llama_index.core import (
     VectorStoreIndex,
     StorageContext,
 )
-from llama_index.vector_stores.faiss import FaissVectorStore
-from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-from llama_index.core.node_parser import TokenTextSplitter
 from llama_index.core import Settings
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
-
+from llama_index.vector_stores.faiss import FaissVectorStore
+from llama_index.core.node_parser import TokenTextSplitter
 
 logging.basicConfig(
     level=logging.INFO,
@@ -23,7 +20,7 @@ logging.basicConfig(
     ]
 )
 
-# init the logger 
+# init the logger
 logger = logging.getLogger(__name__)
 
 # embeddings definition
