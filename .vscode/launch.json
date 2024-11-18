@@ -1,0 +1,47 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "get-data",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/get_data.py",
+            // "program": "${workspaceFolder}/src/get_data_optim.py",
+            "cwd": "${workspaceFolder}",
+            "python": "${command:python.interpreterPath}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": [
+                "--max_paper_to_search",
+                "10",
+            ], 
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "ingestion",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/ingestion.py",
+            "cwd": "${workspaceFolder}",
+            "python": "${command:python.interpreterPath}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
+            "args": [
+                "--chunking_strategy",
+                "10",
+                "--embedding_name",
+                "mxbai-embed-large",
+                "--model_name",
+                "llama3.1"
+            ], 
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
