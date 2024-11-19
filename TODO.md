@@ -30,3 +30,41 @@ EVALUATION:
 REFACTORING:
     - create a RAG module that will be used to index and generate answers
     - create config files for the iterations 
+
+FINE-TUNING:
+    - LLM:
+        - full fine-tuning vs parameter efficient fine-tuning:
+            - lora
+            - qlora
+        - training hardware requirements
+        - data preparation:
+            - case of instruct dataset: https://colab.research.google.com/drive/1GH8PW9-zAe4cXEZyOIE-T9uHXblIldAg?usp=sharing
+                - blog: https://www.datacamp.com/code-along/fine-tuning-your-own-llama-2-model
+        - tools:
+            - huggingface transformers
+            - unsloth: https://mlabonne.github.io/blog/posts/2024-07-29_Finetune_Llama31.html
+            - pytorch fsdp
+        - multi-gpu training
+        - quantization:
+            - https://mlabonne.github.io/blog/posts/4_bit_Quantization_with_GPTQ.html
+            - https://mlabonne.github.io/blog/posts/Introduction_to_Weight_Quantization.html
+        - instruction fine-tuning:
+            - https://github.com/mlabonne/llm-course/blob/main/Fine_tune_Llama_2_in_Google_Colab.ipynb
+            - https://www.philschmid.de/fine-tune-llms-in-2024-with-trl
+
+        - case of classification:
+            - https://www.datacamp.com/tutorial/fine-tuning-llama-3-1
+        - alignment:
+            - RLHF
+            - DPO: https://mlabonne.github.io/blog/posts/Fine_tune_Mistral_7b_with_DPO.html
+            - PPO
+            - ORPO: https://mlabonne.github.io/blog/posts/2024-04-19_Fine_tune_Llama_3_with_ORPO.html
+        - serving:
+            - ollama
+            - exllamav2: https://github.com/mlabonne/llm-course/blob/main/Fine_tune_Llama_2_in_Google_Colab.ipynb
+            - TGI
+            - vLLM
+
+    - EMBEDDING:
+        - sentence transformers:
+            - https://www.philschmid.de/fine-tune-embedding-model-for-rag

@@ -1,0 +1,4 @@
+datasets 
+transformers 
+sentence_transformers 
+faiss-gpu

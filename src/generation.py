@@ -112,6 +112,7 @@ if __name__=="__main__":
         "Explain the attention mechanism in transformers",
         "What is the main goal of Colpali?",
         "What is your name?",
+        "What is CONTINUAL MEMORIZATION OF FACTOIDS?"
     ]
     
     # define the llm and embedding models
