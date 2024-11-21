@@ -6,3 +6,4 @@ llama-index-embeddings-huggingface
 llama-index-llms-huggingface
 llama-index-llms-ollama
 llama-index-embeddings-ollama
+ragas
